@@ -1,14 +1,14 @@
 import cv2
 
 # --- INPUT CONFIG ---
-input_path = "../data/parking_vid.mp4"
-output_path = "../data/parking_small.mp4"
+input_path = "../data/parking_small.mp4"
+output_path = "../data/section_parking.mp4"
 
 # Crop rectangle (x, y, width, height)
-crop_x = 0
+crop_x = 143
 crop_y = 0
-crop_w = 474
-crop_h = 1080
+crop_w = 245
+crop_h = 622
 
 # --- OPEN VIDEO ---
 cap = cv2.VideoCapture(input_path)
@@ -25,10 +25,16 @@ out = cv2.VideoWriter(output_path, fourcc, fps, (crop_w, crop_h))
 ret = True
 while ret:
     ret, frame = cap.read()
+    if not ret:
+        print("⚠️ Could not read frame or reached end of video.")
+        break
+
+        cropped = frame[crop_y:crop_y + crop_h, crop_x:crop_x + crop_w]
+        out.write(cropped)
 
     # Crop the frame
     cropped = frame[crop_y:crop_y + crop_h, crop_x:crop_x + crop_w]
-
+    print("cropped shape:", cropped.shape)
     out.write(cropped)
 
 # --- CLEANUP ---
