@@ -15,10 +15,23 @@ def calc_diff(im1: np.array, im2: np.array)->float:
     """
     return np.abs(np.mean(im1) - np.mean(im2))
 
-mask = cv2.imread('./data/half_b_mask.png', cv2.IMREAD_GRAYSCALE)# can also use cv2.imread('path', 0)
-road_mask = cv2.imread('./data/half_b_road.png', 0)
-vid = cv2.VideoCapture('./data/b_half.mp4')
+
+
+# TODO: ENTER SECTION HERE
+section = 'a'
+
+mask_path = f'./data/section_{section}/mask.png'
+road_path = f'./data/section_{section}/road.png'
+vid_path = f'./data/section_{section}/vid.mp4'
+
+mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)# can also use cv2.imread('path', 0)
+road_mask = cv2.imread(road_path, 0)
+vid = cv2.VideoCapture(vid_path)
 last_frame = None
+
+w, h, fps = int(vid.get(cv2.CAP_PROP_FRAME_WIDTH)), int(vid.get(cv2.CAP_PROP_FRAME_HEIGHT)), int(vid.get(cv2.CAP_PROP_FPS))
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+writer = cv2.VideoWriter(f'./output/output_{section}.mp4', fourcc, fps, (w,h))
 
 
 cc = cv2.connectedComponentsWithStats(mask, 4, cv2.CV_32S)
@@ -40,11 +53,11 @@ top_y = 80
 
 center_spots = {slot[-1] for slot in slots}
 
-center_score = {slot[-1]:1 for slot in slots}
+center_status = {slot[-1]:1 for slot in slots}
 
 
 
-center_score[(0, 0)] = (2/3)
+center_status[(0, 0)] = (2 / 3)
 
 def find_vertical_neighbors(target, all_coords, y_gap=20, x_tolerance=20):
     cx, cy = target
@@ -73,9 +86,9 @@ def find_vertical_neighbors(target, all_coords, y_gap=20, x_tolerance=20):
 
 def check_adjacent(above, below, score):
     boost = 3
-    if center_score[above]:
+    if center_status[above]:
         boost -= 1
-    if center_score[below]:
+    if center_status[below]:
         boost -=1
     return  round(score*boost, 2)
 
@@ -119,9 +132,9 @@ while ret:
             dist = abs(center[1] - top_y) * (1 / 3)
             if all_status[i]:
                 score[center] = dist
-                center_score[center] = True
+                center_status[center] = True
             else:
-                center_score[center] = False
+                center_status[center] = False
 
 
     for i, slot in enumerate(slots):
@@ -143,10 +156,6 @@ while ret:
         best_cx, best_cy = min(final_score, key=final_score.get)
 
 
-        # if score[center]>0:
-        #     label = f'score: {score[center]}'
-        # else:
-        #     label = 'Taken'
         label = f'{i}, {final_score[center]}'
         if all_status[i]:
             frame = cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
@@ -194,11 +203,12 @@ while ret:
 
     cv2.putText(frame, f'Available Spots: {sum(all_status)}/{len(all_status)}', (0, 20),
                 cv2.FONT_ITALIC, 0.5, (255, 0, 0), 2)
-
+    writer.write(frame)
     cv2.imshow('Parking Footage', frame)
     if cv2.waitKey(25) & 0xFF == ord('q'): # basically closes the frame when we hit q
         break
     # waits 25ms for a keypress (q) -> closes the window
 
 vid.release()
+writer.release()
 cv2.destroyAllWindows()
