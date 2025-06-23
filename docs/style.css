@@ -391,3 +391,78 @@ body{
   font-weight: 600;
   margin-bottom: 10px;
 }
+
+
+
+
+@media (max-width: 1024px) {
+  .img-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .help{
+    display: none;
+  }
+
+  .card{
+    scale: 0.9;
+  }
+
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-r,
+  .text-l {
+    position: static;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    width: 90vw;
+    max-width: 500px;
+    margin-top: 15px;
+    transition: none;
+  }
+
+  .card-container:hover .text-r,
+  .card-container:hover .text-l {
+    left: auto;
+    right: auto;
+    transform: none;
+    transition: none;
+  }
+
+  .card img {
+    width: 60vw;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .text-r h1,
+  .text-l h1 {
+    font-size: 1.2rem;
+  }
+
+  .text-r p,
+  .text-l p {
+    font-size: 0.95rem;
+  }
+
+  .help {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .l h1 {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+
+  .l h2 {
+    font-size: 1.5rem;
+  }
+}
+
