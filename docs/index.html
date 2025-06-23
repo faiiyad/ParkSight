@@ -6,37 +6,79 @@
     <title>ParkSight</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/3801fa37f8.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./images/parking.png" type="image/x-icon">
 </head>
 
 <body>
     <div class="main">
         <div class="title">
             <h2><i class="fa-solid fa-square-parking"></i> ParkSight</h2>
+            <span class="subtitle">by Faiyad Ahmed Masnoon</span>
             <div class="icons">
                 
-                <a href="http://" class="github"><i class="fa-brands fa-github fa-lg"></i> Github</a>
-                <a href="http://" class="logic"><i class="fa-solid fa-brain"></i> Logic</a>
-                <a href="http://" class="proj"><i class="fa-solid fa-circle-plus"></i> Projects</a>
+                <a href="https://github.com/faiiyad/ParkSight" target="_blank" class="github"><i class="fa-brands fa-github fa-lg"></i> Github</a>
+                <a href="#logic" class="logic"><i class="fa-solid fa-brain"></i> Logic</a>
+                <a href="https://faiiyad.github.io" target="_blank" class="proj"><i class="fa-solid fa-link"></i> Website</a>
             </div>
         </div>
+        <div class="help">
+            <p>Hover over each card to see more details.</p>
+        </div>
         <div class="img-container">
-            <div class="card pink">
-                <span class="one">Case l</span>
-                <img src="./images/output_a.gif" alt="A">
-                <div class="text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima neque maiores voluptatem? Tenetur fugit ipsa quibusdam praesentium fuga, sint doloremque?</div>
+            <div class="card-container">
+                <div class="card pink">
+                    <span class="one">Best Spot Algorithm</span>
+                    <img src="./images/output_a.gif" alt="A">
+                </div>
+                <div class="text-r pink">
+                    <h1>Best Spot Algorithm</h1>
+                    <p>Normal behaviour of the algorithm</p>
+                    <p>Finds the most optimal free parking spot, talking into account the distance from the user and the adjacent parking spots' status.</p>
+                </div>
             </div>
-            <div class="card blue">
-                <span class="two">Case ll</span>
-                <img src="./images/output_b.gif" alt="A">
+            <div class="card-container">
+                    <div class="card blue">
+                        <span class="two">Real-time Switching</span>
+                        <img src="./images/output_d.gif" alt="A">
+                    </div>
+                    <div class="text-r blue">
+                        <h1>Real-time Switching</h1>
+                        <p></p>
+                        <p>When a parking spot frees up, the algorithm automatically recalculates the scores for the free spot, and if it is a better choice, directs the user to the new spot.</p>
+                    </div>
             </div>
-            <div class="card green">
-                <span><i class="fa-solid fa-3"></i></span>
-                <img src="./images/output_c.gif" alt="A">
+            <div class="card-container">
+                    <div class="card green">
+                        <span class="three green">Prioritizing Space</span>
+                        <img src="./images/output_c.gif" alt="A">
+                    </div>
+                    <div class="text-l green">
+                        <h1>Prioritizing Space</h1>
+                        <p>To ensure a smoother parking experience</p>
+                        <p>If there is a parking spot with 2 adjacent spots free, it will be preferred over a parking spot with 1 adjacent spot free, provided that it is not too far away. Simillarly, a spot with 1 free adjacent space will be preferred over a spot with none.</p>
+                    </div>
             </div>
-            <div class="card yellow">
-                <span><i class="fa-solid fa-4"></i></span>
-                <img src="./images/output_d.gif" alt="A">
+            <div class="card-container">
+                    <div class="card orange">
+                        <span class="four orange">Precision</span>
+                        <img src="./images/output_b.gif" alt="A">
+                    </div>
+                    <div class="text-l orange">
+                        <h1>Prioritizing Space</h1>
+                        <p>To ensure a smoother parking experience</p>
+                        <p>If there is a parking spot with 2 adjacent spots free, it will be preferred over a parking spot with 1 adjacent spot free, provided that it is not too far away. Simillarly, a spot with 1 free adjacent space will be preferred over a spot with none.</p>
+                    </div>
             </div>
+            
+            
+        </div>
+        <div class="l" id="logic">
+            <h2>Logic</h2>
+            <h1>This program uses a Simple Vector Classifier to identify empty parking spots. 
+                It then applies a score-based algorithm that considers the position of each parking spot, its distance from the user, 
+                and the status of the spot itself as well as its adjacent spots to determine the most optimal parking location. 
+                Once the best spot is identified, the system directs the user to it, 
+                dynamically updating its recommendation in response to real-time video footage.</h1>
         </div>
     </div>
     

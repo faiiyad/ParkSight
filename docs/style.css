@@ -1,17 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 
+html{
+    scroll-behavior: smooth;
+}
+
 body{
+    min-height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
-    background-color: rgb(6, 12, 61);
+    background-color: rgb(0, 0, 0);
     background-size: cover;
+    
+    /* background-image: url('https://w0.peakpx.com/wallpaper/193/106/HD-wallpaper-macbook-pro-m3.jpg'); */
     background-image: linear-gradient(
         rgba(3, 24, 94, 0.61),
         rgba(2, 1, 19, 0.658)
     );
     backdrop-filter: blur(20px);
-    margin: 10px 0px;
+    margin:0px;
     font-family: 'Rubik', sans-serif;
     
 }
@@ -20,6 +28,8 @@ body{
 .main{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .title{
@@ -27,11 +37,21 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    margin:0px 25px;
+    
 }
 
 .title h2{
     font-size: xx-large;
     color: white;
+    margin-bottom: 2px;
+}
+
+.subtitle{
+    color: white;
+    font-style: italic;
+    margin-bottom: 10px;
 }
 
 .title a{
@@ -73,10 +93,21 @@ body{
 }
 
 
-.img-container{
-    width: 80vw;
-    height: 100vh;
+
+.help{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.img-container{
+    width: 70vw;
+    max-width: 1300px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -84,6 +115,17 @@ body{
     
     
 }
+
+.card-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: 4s ease;
+    position: relative;
+}
+
+
 
 .card{
     color:black;
@@ -97,26 +139,110 @@ body{
     align-items: center;
     /* border:1px solid; */
     transition: 1s ease;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(20px);
+    background-color: rgba(114, 114, 114, 0.3);
+
+    backdrop-filter: blur(10px);
     border-radius: 15px;
     z-index: 1;
     overflow: visible; 
+    transition: 0.2s;
 }
 
 .card img{
     width: 200px;
     height: 600px;
-    border-radius: 15px;  
+    border-radius: 15px;
+    border: 2px solid white  
 }
 
 .card:hover{
     scale: 1.1;
 }
 
+.text-r{
+    position: absolute;
+    top: 2vh;
+    left: 12vw;
+    z-index: 999990;
+    width: 300px;
+    height: 40%;
+    padding: 15px;
+    color: white;
+    /* border: 1px solid black; */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* background-image: linear-gradient(
+     120deg, 
+     rgba(0, 0, 0, 0.2),
+     rgba(0, 0, 0, 0.2),
+     rgba(0, 0, 0, 0.2)
+    ); */
+    backdrop-filter: blur(20px);
+    border: 2px solid white;
+    border-radius: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-20px); 
+    transition:
+    opacity 0.2s ease-in,   /* faster fade-out */
+    transform 0.4s ease;
+    cursor: default;
+}
 
+.card-container:hover .text-r{
+    left: 13vw;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    transition:
+    opacity 0.6s ease-out,  /* slower fade-in */
+    transform 0.4s ease;
+}
+.text-l{
+    position: absolute;
+    top: 2vh;
+    right: 11vw;
+    z-index: 999990;
+    width: 300px;
+    height: 40%;
+    padding: 15px;
+    color: white;
+    /* border: 1px solid black; */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* background-image: linear-gradient(
+     120deg, 
+     rgba(0, 0, 0, 0.2),
+     rgba(0, 0, 0, 0.2),
+     rgba(0, 0, 0, 0.2)
+    ); */
+    backdrop-filter: blur(20px);
+    border: 2px solid white;
+    border-radius: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(20px); 
+    transition:
+    opacity 0.2s ease-in,   /* faster fade-out */
+    transform 0.4s ease;
+    cursor: default;
+}
+
+.card-container:hover .text-l{
+    right: 12vw;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    transition:
+    opacity 0.6s ease-out,  /* slower fade-in */
+    transform 0.4s ease;
+}
+
+
+
+/* PINK CARD */
 .card.pink{
-    border: 2px solid pink;
+    border: 2px solid #d05fd4;
+    color: #d05fd4;
+    
 }
 
 .one{
@@ -126,32 +252,36 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: pink;
+    background-color: transparent;
     width: fit-content;
+    padding: 15px;
     height: auto;
-    padding: 2px;
-    border: 2px solid pink;
+    padding: 15px;
     border-radius: 30px;
 }
 
 .card.pink:hover{
-    background-color: pink;
+    background-color: rgba(208, 95, 212, 0.5);
+    color: transparent;
 
 }
 
-.text{
-    z-index: 999990;
-    position: absolute;
-    top: 20%;
-    left: 100%;
-    width: 250px;
-    border: 1px solid black;
-    background-color: blue;
-    display: none;
+.text-r.pink h1{
+    color: #e86aec;
 }
 
+
+
+/* BLUE CARD */
 .card.blue{
-    border: 2px solid aqua;
+    border: 2px solid rgb(45, 85, 157);
+    color: rgb(46, 119, 255);
+}
+
+.card.blue:hover{
+    background-color: rgba(45, 85, 157, 0.5);
+    color: transparent;
+
 }
 
 .two{
@@ -161,20 +291,103 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    background-color: transparent;
     width: fit-content;
+    padding: 15px;
     height: auto;
-    padding: 2px;
-    border: 2px solid aqua;
+    padding: 15px;
     border-radius: 30px;
+    cursor: default;
 }
 
-.card.blue:hover{
-    background-color:aqua
+.text-r.blue h1{
+    color: rgb(46, 119, 255);
+}
+
+/* GREEN CARD */
+
+
+.card.green{
+    border: 2px solid rgb(142, 223, 95);
+    color: rgb(142, 223, 95);
+}
+
+.card.green:hover{
+    background-color: rgba(142, 223, 95, 0.5);
+    color: transparent;
+
+}
+
+.three{
+    font-size: large;
+    font-weight: 800;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    width: fit-content;
+    padding: 15px;
+    height: auto;
+    padding: 15px;
+    border-radius: 30px;
+    cursor: default;
 }
 
 
+.text-l.green h1{
+    color: rgb(142, 223, 95);
+}
 
-.card.yellow{
-    border: 2px solid yellow;
+/* ORANGE CARD */
+.card.orange{
+    border: 2px solid #ec7744;
+    color: #ec7744;
+}
+
+.card.orange:hover{
+    background-color: rgba(236, 119, 68,0.5);
+    color: transparent;
+
+}
+
+.four{
+    font-size: large;
+    font-weight: 800;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    width: fit-content;
+    padding: 15px;
+    height: auto;
+    padding: 15px;
+    border-radius: 30px;
+    cursor: default;
+}
+
+
+.text-l.orange h1{
+    color: #ec7744;
+}
+
+.l {
+  margin-top: 60px;
+  max-width: 1200px;
+  padding: 30px;
+  text-align: center;
+  color: white;
+}
+
+.l h1 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.l h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
