@@ -102,6 +102,13 @@ body{
     margin-bottom: 20px;
 }
 
+.mobile{
+    display: none;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
 .img-container{
     width: 70vw;
     max-width: 1300px;
@@ -258,6 +265,7 @@ body{
     height: auto;
     padding: 15px;
     border-radius: 30px;
+    cursor: default;
 }
 
 .card.pink:hover{
@@ -404,6 +412,11 @@ body{
 
   .help{
     display: none;
+  }
+
+  .mobile{
+    display: inline;
+    font-size: medium;
   }
 
   .card{
